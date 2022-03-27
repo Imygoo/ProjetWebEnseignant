@@ -1,0 +1,30 @@
+<div>
+    <h2>Education</h2>
+    <div *ngIf="!waiting">
+        <div  *ngFor="let education of educationList">
+            <div style="display: flex; justify-content: space-between;">
+                <h3>{{education['Formation']}}</h3>
+                <h4>{{education['Intitulé']}}</h4>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <p>{{education['Ref']}}</p>
+                <p>{{education['Semestre']}}</p>
+                <p>{{education['Statut']}}</p>
+                <p>{{education['Effectif']}}</p>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <p>{{education['grCM']}} gr. CM</p>
+                <p>{{education['grTD']}} gr. TD</p>
+                <p>{{education['grTP']}} gr. TP</p>
+                <p>{{education['h/CM']}} h/CM</p>
+                <p>{{education['h/TD']}} h/TD</p>
+                <p>{{education['h/TP']}} h/TP</p>
+            </div>
+            <hr>
+        </div>
+    </div>
+    
+    <div *ngIf="waiting" style="font-size: 34 px; padding: 35vh 0">
+        Chargement ...
+    </div>
+</div>
