@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+// import axios
+import axios from 'axios';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -6,30 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class LoginComponent implements OnInit {
-  emailValue: any = 'testse';
-  passwordValue: any = 'test';
+  email: string = '';
+  password: string = '';
+  message: string = '';
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  login() {
-    console.log(this.emailValue);
-    console.log(this.passwordValue);
+  async login(): Promise<void> {
+    // get education list from localhost:5000/api/educations
+    let response = await loginRequest(this.email, this.password);
+    this.message = response.data.message;
+  }
+}
+
+async function loginRequest(email: string, password: string) {
+  let response = await axios.post('http://localhost:5000/api/auth/login', {
+    email: email,
+    password: password
+  });
+
+  // if response is OK
+  if (response.data.success === true) {
+    let token = response.data.token;
+    localStorage.setItem('token', token);
   }
 
-  set email(value) {
-    this.emailValue = value;
-    console.log(this.emailValue);
-  }
-  get email() {
-    return this.emailValue;
-  }
-  set password(value) {
-    this.passwordValue = value;
-  }
-  get password() {
-    return this.passwordValue;
-  }
+  return response;
 }

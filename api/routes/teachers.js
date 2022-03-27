@@ -26,14 +26,16 @@ router.post('/', (req, res) => {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         status: req.body.status,
-        maxHours: req.body.maxHours
+        maxHours: req.body.maxHours,
+        email: req.body.email,
+        password: req.body.password
     });
     teacher.save()
         .then(() => res.json({
             message: 'Teacher created'
         }))
         .catch(err => res.status(404).json({
-            message: 'Teacher not created'
+            message: 'Teacher not created: ' + err 
         }));
 });
 
@@ -45,6 +47,8 @@ router.put('/:id', (req, res) => {
             teacher.lastname = req.body.lastname;
             teacher.status = req.body.status;
             teacher.maxHours = req.body.maxHours;
+            teacher.email = req.body.email;
+            teacher.password = req.body.password;
             teacher.save()
                 .then(() => res.json({
                     message: 'Teacher updated'

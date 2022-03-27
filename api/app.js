@@ -4,12 +4,11 @@ const { urlencoded } = require('body-parser');
 
 const TeacherRoutes = require('./routes/teachers');
 const EducationRoutes = require('./routes/educations');
+const AuthRoutes = require('./routes/auth');
 
 // export one function that gets called once as the server is being initialized
 module.exports = function (app, server) {
     const mongoose = require('mongoose');
-
-    console.log(process.env.DB_URL);
 
     mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_URL}/${process.env.DB_NAME}?retryWrites=true&w=majority`, {
         useNewUrlParser: true,
@@ -23,11 +22,12 @@ module.exports = function (app, server) {
 
     app.use((req, res, next) => {
         res.setHeader('Access-Control-Allow-Origin', '*');
-        res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-        res.setHeader('Access-Control-Allow-Methods', '*');
+        res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization, X-Auth-Token');
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
         next();
     });
 
+    app.use('/api/auth', AuthRoutes);
     app.use('/api/teachers', TeacherRoutes);
     app.use('/api/educations', EducationRoutes);
 }

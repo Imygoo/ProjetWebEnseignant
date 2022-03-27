@@ -4,6 +4,7 @@ var router = express.Router();
 var Teacher = require('../models/teacher');
 const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
+require('dotenv').config();
 
 // login
 router.post('/login', function (req, res) {
@@ -18,7 +19,7 @@ router.post('/login', function (req, res) {
         } else {
             if (teacher) {
                 if (teacher.password == req.body.password) {
-                    var token = jwt.sign(teacher, process.env.ACCESS_TOKEN_SECRET, {
+                    var token = jwt.sign({teacher}, process.env.ACCESS_TOKEN_SECRET, {
                         expiresIn: '24h'
                     });
                     res.json({
@@ -45,6 +46,8 @@ router.post('/login', function (req, res) {
 // get user from token
 router.get('/me', function (req, res) {
     var token = req.headers['authorization'];
+    token = token.slice(7, token.length);
+    
     if (!token) {
         res.json({
             success: false,

@@ -9,23 +9,19 @@
                 <div class="panel-body">
                     <fieldset>
                         <div class="form-group">
-                            <input class="form-control" [value]="emailValue" placeholder="E-mail" id="email" name="email" type="email" autofocus>
+                            <input class="form-control" [(ngModel)]="email" placeholder="E-mail" id="email" name="email" type="email" autofocus>
                         </div>
                         <div class="form-group">
-                            <input class="form-control" [value]="passwordValue"  placeholder="Password" id="password" name="password" type="password" value="">
+                            <input class="form-control" [(ngModel)]="password"  placeholder="Password" id="password" name="password" type="password" value="">
                         </div>
                         <!-- Change this to a button or input when using this as a form -->
                         <button (click)="login()" type="submit" class="btn btn-lg btn-success btn-block">Se connecter</button>
+
+                        <div *ngIf="message" style="margin-top: 15px; color: rgb(167, 36, 36); font-weight: 500;">{{ message }}</div>
                     </fieldset>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-    function test() {
-        console.log('test');
-    }
-</script>
 

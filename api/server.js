@@ -2,8 +2,10 @@ const express = require('express');
 const app = express();
 const server = require('http').Server(app);
 const port = normalizePort(process.env.PORT || '5000');
+const bodyParser = require('body-parser');
 
 app.set('port', port);
+app.use(bodyParser.urlencoded())
 
 // load app.js and let it do it's part of the initialization of app and server
 require('./app.js')(app, server);
