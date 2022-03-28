@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-education',
@@ -8,20 +9,20 @@ import { Component, OnInit } from '@angular/core';
 export class EducationComponent implements OnInit {
 
   waiting = true;
-  educationList = [];
-  constructor() { }
+  education = null;
+  constructor(private route: ActivatedRoute) { }
 
   async ngOnInit(): Promise<void>  {
-    // get education list from localhost:5000/api/educations
-    this.educationList = await getEducationList();
+    let id = this.route.snapshot.paramMap.get('id');
+    this.education = await getEducation(id);
     this.waiting = false;
   }
 }
 
 
 // function async get education list from localhost:5000/api/educations
-async function getEducationList() {
-  const res = await fetch('http://localhost:5000/api/educations');
-  const educationList = await res.json();
-  return educationList;
+async function getEducation(id: any) {
+  const res = await fetch(`http://localhost:5000/api/educations/${id}`);
+  const education = await res.json();
+  return education;
 }

@@ -1,10 +1,10 @@
 <div>
     <h2>Educations</h2>
     <div *ngIf="!waiting">
-        <div *ngIf="education" style="background-color: rgb(245, 245, 245);
+        <div (click)="onSelect(education['_id'])" *ngFor="let education of educationList" style="background-color: rgb(245, 245, 245);
         padding: 15px; margin-bottom: 20px; border-radius: 15px; box-shadow: 0px 5px 15px 0px rgba(128, 128, 128, 0.534);">
-            <div style="display: flex; justify-content: space-between; margin-top: -10px; ">
-                <h3>{{education['Formation']}}</h3>
+            <div  style="display: flex; justify-content: space-between; margin-top: -10px; ">
+                <h3 onclick="onSelect(education['_id'])">{{education['Formation']}}</h3>
                 <h4>{{education['Intitulé']}}</h4>
             </div>
             <div style="display: flex; justify-content: space-between;">

@@ -46,7 +46,8 @@ router.post('/login', function (req, res) {
 // get user from token
 router.get('/me', function (req, res) {
     var token = req.headers['authorization'];
-    token = token.slice(7, token.length);
+
+    token = token.split(' ')[1];
     
     if (!token) {
         res.json({
