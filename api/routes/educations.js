@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
     Education.find()
         .then(educations => res.json(educations))
         .catch(err => res.status(404).json({
-            message: 'Educations not found'
+            message: 'Matières non trouvées.'
         }));
 });
 
@@ -16,7 +16,7 @@ router.get('/:id', (req, res) => {
     Education.findById(req.params.id)
         .then(education => res.json(education))
         .catch(err => res.status(404).json({
-            message: 'Education not found'
+            message: 'Matière non trouvé.'
         }));
 });
 
@@ -30,10 +30,10 @@ router.post('/', (req, res) => {
     });
     education.save()
         .then(() => res.json({
-            message: 'Education created'
+            message: 'Matière créée.'
         }))
         .catch(err => res.status(404).json({
-            message: 'Education not created'
+            message: 'Matière non créée.'
         }));
 });
 
@@ -47,14 +47,14 @@ router.put('/:id', (req, res) => {
             education.maxHours = req.body.maxHours;
             education.save()
                 .then(() => res.json({
-                    message: 'Education updated'
+                    message: 'Matière mise à jour.'
                 }))
                 .catch(err => res.status(404).json({
-                    message: 'Education not updated'
+                    message: 'Matière non mise à jour.'
                 }));
         })
         .catch(err => res.status(404).json({
-            message: 'Education not found'
+            message: 'Matière non trouvée.'
         }));
 });
 
@@ -62,10 +62,10 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
     Education.findByIdAndDelete(req.params.id)
         .then(() => res.json({
-            message: 'Education deleted'
+            message: 'Matière supprimée.'
         }))
         .catch(err => res.status(404).json({
-            message: 'Education not deleted'
+            message: 'Matière non supprimée.'
         }));
 });
 

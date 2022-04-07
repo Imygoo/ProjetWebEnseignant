@@ -14,7 +14,7 @@ router.post('/login', function (req, res) {
         if (err) {
             res.json({
                 success: false,
-                message: 'Error: ' + err
+                message: 'Erreur : ' + err
             });
         } else {
             if (teacher) {
@@ -24,19 +24,19 @@ router.post('/login', function (req, res) {
                     });
                     res.json({
                         success: true,
-                        message: 'Successfully Logged In!',
+                        message: 'Connexion réussi !',
                         token: token
                     });
                 } else {
                     res.json({
                         success: false,
-                        message: 'Incorrect Password'
+                        message: 'Mot de passe incorrect !'
                     });
                 }
             } else {
                 res.json({
                     success: false,
-                    message: 'Email not found'
+                    message: 'Email non connue.'
                 });
             }
         }
@@ -52,14 +52,14 @@ router.get('/me', function (req, res) {
     if (!token) {
         res.json({
             success: false,
-            message: 'No token provided'
+            message: 'Problème de token.'
         });
     } else {
         jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, function (err, decoded) {
             if (err) {
                 res.json({
                     success: false,
-                    message: 'Token invalid: ' + err
+                    message: 'Token invalide : ' + err
                 });
             } else {
                 res.json({

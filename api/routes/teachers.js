@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
     Teacher.find()
         .then(teachers => res.json(teachers))
         .catch(err => res.status(404).json({
-            message: 'Teachers not found'
+            message: 'Enseignant non trouvé.'
         }));
 });
 
@@ -16,7 +16,7 @@ router.get('/:id', (req, res) => {
     Teacher.findById(req.params.id)
         .then(teacher => res.json(teacher))
         .catch(err => res.status(404).json({
-            message: 'Teacher not found'
+            message: 'Enseignant non trouvé.'
         }));
 });
 
@@ -32,10 +32,10 @@ router.post('/', (req, res) => {
     });
     teacher.save()
         .then(() => res.json({
-            message: 'Teacher created'
+            message: 'Enseignant créé.'
         }))
         .catch(err => res.status(404).json({
-            message: 'Teacher not created: ' + err 
+            message: 'Enseignant non créé : ' + err 
         }));
 });
 
@@ -51,14 +51,14 @@ router.put('/:id', (req, res) => {
             teacher.password = req.body.password;
             teacher.save()
                 .then(() => res.json({
-                    message: 'Teacher updated'
+                    message: 'Enseignant mis à jour.'
                 }))
                 .catch(err => res.status(404).json({
-                    message: 'Teacher not updated'
+                    message: 'Enseignant non mis à jour.'
                 }));
         })
         .catch(err => res.status(404).json({
-            message: 'Teacher not found'
+            message: 'Enseignant non trouvé.'
         }));
 });
 
@@ -66,10 +66,10 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
     Teacher.findByIdAndDelete(req.params.id)
         .then(() => res.json({
-            message: 'Teacher deleted'
+            message: 'Enseignant supprimé.'
         }))
         .catch(err => res.status(404).json({
-            message: 'Teacher not deleted'
+            message: 'Enseignant non supprimé.'
         }));
 });
 
