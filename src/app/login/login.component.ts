@@ -19,9 +19,11 @@ export class LoginComponent implements OnInit {
   }
 
   async login(): Promise<void> {
-    // get education list from localhost:5000/api/educations
     let response = await loginRequest(this.email, this.password);
     this.message = response.data.message;
+    if (response.data.success) {
+      window.location.href = '/';
+    }
   }
 }
 

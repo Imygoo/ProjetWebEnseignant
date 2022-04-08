@@ -3,8 +3,9 @@ var express = require('express');
 var router = express.Router();
 var Teacher = require('../models/teacher');
 const jwt = require('jsonwebtoken');
-const bodyParser = require('body-parser');
 require('dotenv').config();
+const bodyParser = require('body-parser');
+
 
 // login
 router.post('/login', function (req, res) {
@@ -70,5 +71,7 @@ router.get('/me', function (req, res) {
         });
     }
 });
+
+
 
 module.exports = router;

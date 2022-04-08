@@ -11,7 +11,6 @@ export class AuthGuard implements CanActivate {
     canActivate(){
         var response = this.auth.isAuth();
 
-        console.log(response);
         if(response){
             return true;
         } 

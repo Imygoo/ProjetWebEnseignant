@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthGuard } from './auth/auth-guard.service';
 import { AuthService } from './auth/auth.service';
 import { EducationComponent } from './education/education.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { EducationComponent } from './education/education.component';
     HomeComponent,
     EducationsComponent,
     EducationComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
