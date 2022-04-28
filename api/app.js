@@ -9,13 +9,12 @@ const AuthRoutes = require('./routes/auth');
 // export one function that gets called once as the server is being initialized
 module.exports = function (app, server) {
     const mongoose = require('mongoose');
-
     mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_URL}/${process.env.DB_NAME}?retryWrites=true&w=majority`, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
         .then(() => console.log('DB is OK'))
-        .catch(() => console.log('DB failed'));
+        .catch((error) => console.log(error+"DB failed"));
 
     app.use(express.json());
     app.use(urlencoded({extended: true}));
