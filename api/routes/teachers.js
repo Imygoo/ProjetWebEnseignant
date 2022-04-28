@@ -1,14 +1,13 @@
 var express = require('express');
 var router = express.Router();
 const Teacher = require('../models/teacher');
-let authenticateToken = require('../middleware/authenticate');
 
 // GET all teachers
 router.get('/', (req, res) => {
     Teacher.find()
         .then(teachers => res.json(teachers))
         .catch(err => res.status(404).json({
-            message: 'Enseignant non trouvé.'
+            message: 'Enseignant non trouvé'
         }));
 });
 
@@ -17,12 +16,12 @@ router.get('/:id', (req, res) => {
     Teacher.findById(req.params.id)
         .then(teacher => res.json(teacher))
         .catch(err => res.status(404).json({
-            message: 'Enseignant non trouvé.'
+            message: 'Enseignant non trouvé'
         }));
 });
 
 // create
-router.post('/', authenticateToken, (req, res) => {
+router.post('/', (req, res) => {
     const teacher = new Teacher({
         firstname: req.body.firstname,
         lastname: req.body.lastname,
@@ -33,7 +32,7 @@ router.post('/', authenticateToken, (req, res) => {
     });
     teacher.save()
         .then(() => res.json({
-            message: 'Enseignant créé.'
+            message: 'Enseignant créé'
         }))
         .catch(err => res.status(404).json({
             message: 'Enseignant non créé : ' + err
@@ -41,7 +40,7 @@ router.post('/', authenticateToken, (req, res) => {
 });
 
 // update
-router.put('/:id', authenticateToken, (req, res) => {
+router.put('/:id', (req, res) => {
     Teacher.findById(req.params.id).then(teacher => {
 
         req.body.firstname != null ? teacher.firstname = req.body.firstname : null;
@@ -53,25 +52,26 @@ router.put('/:id', authenticateToken, (req, res) => {
 
         teacher.save()
             .then(() => res.json({
-                message: 'Enseignant mis à jour.'
+                message: 'Enseignant mis à jour'
             }))
             .catch(err => res.status(404).json({
-                message: 'Enseignant non mis à jour.' + err
+                message: 'Enseignant non mis à jour' + err
             }));
     }).catch(err => res.status(404).json({
-        message: 'Enseignant non trouvé.'
+        message: 'Enseignant non trouvé'
     }));
 });
 
 // delete
-router.delete('/:id', authenticateToken, (req, res) => {
+router.delete('/:id', (req, res) => {
     Teacher.findByIdAndDelete(req.params.id)
         .then(() => res.json({
-            message: 'Enseignant supprimé.'
+            message: 'Enseignant supprimé'
         }))
         .catch(err => res.status(404).json({
-            message: 'Enseignant non supprimé.'
+            message: 'Enseignant non supprimé'
         }));
 });
+
 
 module.exports = router;

@@ -9,11 +9,14 @@ export class ProfileComponent implements OnInit {
 
   user = null;
   _id = "";
+  show_firstname = "";
+  show_lastname = "";
   firstname = "";
   lastname = "";
   maxHours = 0;
   status = "";
   password = "";
+  email = "";
 
   constructor() { }
 
@@ -22,11 +25,14 @@ export class ProfileComponent implements OnInit {
     if (response) {
       this.user = response;
       this._id = response._id;
+      this.show_firstname = response.firstname;
+      this.show_lastname = response.lastname;
       this.firstname = response.firstname;
       this.lastname = response.lastname;
       this.maxHours = response.maxHours;
       this.status = response.status;
       this.password = response.password;
+      this.email = response.email;
     }
   }
 

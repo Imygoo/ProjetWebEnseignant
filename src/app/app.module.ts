@@ -11,6 +11,10 @@ import { AuthGuard } from './auth/auth-guard.service';
 import { AuthService } from './auth/auth.service';
 import { EducationComponent } from './education/education.component';
 import { ProfileComponent } from './profile/profile.component';
+import { TeachersComponent } from './teachers/teachers.component';
+import { TeacherComponent } from './teacher/teacher.component';
+import { AdminGuard } from './auth/admin-guard.service';
+import { TeacherPostComponent } from './teacher-post/teacher-post.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,10 @@ import { ProfileComponent } from './profile/profile.component';
     EducationsComponent,
     EducationComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    TeachersComponent,
+    TeacherComponent,
+    TeacherPostComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +35,8 @@ import { ProfileComponent } from './profile/profile.component';
   ],
   providers: [
     AuthGuard,
-    AuthService
+    AuthService,
+    AdminGuard
   ],
   bootstrap: [AppComponent]
 })

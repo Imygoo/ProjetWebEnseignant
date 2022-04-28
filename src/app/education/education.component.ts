@@ -17,6 +17,10 @@ export class EducationComponent implements OnInit {
     this.education = await getEducation(id);
     this.waiting = false;
   }
+
+  async back() {
+    window.history.back();
+  }
 }
 
 

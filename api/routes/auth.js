@@ -25,19 +25,19 @@ router.post('/login', function (req, res) {
                     });
                     res.json({
                         success: true,
-                        message: 'Connexion réussi !',
+                        message: 'Connexion réussie',
                         token: token
                     });
                 } else {
                     res.json({
                         success: false,
-                        message: 'Mot de passe incorrect !'
+                        message: 'Mot de passe incorrect'
                     });
                 }
             } else {
                 res.json({
                     success: false,
-                    message: 'Email non connue.'
+                    message: 'Identifiants incorrects. Veuillez vérifier vos identifiants ou contacter un administrateur.'
                 });
             }
         }
@@ -53,7 +53,7 @@ router.get('/me', function (req, res) {
     if (!token) {
         res.json({
             success: false,
-            message: 'Problème de token.'
+            message: 'Problème de token'
         });
     } else {
         jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, function (err, decoded) {
@@ -71,7 +71,5 @@ router.get('/me', function (req, res) {
         });
     }
 });
-
-
 
 module.exports = router;

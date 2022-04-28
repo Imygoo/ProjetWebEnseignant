@@ -1,0 +1,54 @@
+<div>
+    <div class="flex pb-4">
+        <button type="button" (click)="back()" class="text-white bg-teal-600 hover:bg-teal-800 font-medium rounded-lg text-sm px-5 py-2 mr-2 focus:outline-none">Retour</button>
+        <h1 class="text-lg my-auto pl-6">Informations de l'enseignant</h1>
+    </div>
+
+    <div *ngIf="!waiting && teacher" class="bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4">
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+                Prénom
+            </label>
+            <input [disabled]="!isAdmin" [(ngModel)]="firstname" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+                Nom
+            </label>
+            <input [disabled]="!isAdmin" [(ngModel)]="lastname" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+                Email
+            </label>
+            <input [disabled]="!isAdmin" [(ngModel)]="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+                Statut
+            </label>
+            <input [disabled]="!isAdmin" [(ngModel)]="status" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+                Nombre d'heures maximales
+            </label>
+            <input [disabled]="!isAdmin" [(ngModel)]="maxHours" type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+                Mot de passe
+            </label>
+            <input [disabled]="!isAdmin"[(ngModel)]="password" type="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div *ngIf="isAdmin" class="flex items-center justify-between">
+            <button (click)="save()" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+              Sauvegarder
+            </button>
+          </div>
+    </div>
+
+    <div *ngIf="waiting" style="font-size: 34 px; padding: 35vh 0">
+        Chargement ...
+    </div>
+</div>

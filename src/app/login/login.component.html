@@ -1,26 +1,23 @@
 <div class="container">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <div class="login-panel panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Connexion ENSEIGNANT</h3>
-                </div>
-                <div class="panel-body">
-                    <fieldset>
-                        <div class="form-group">
-                            <input class="form-control" [(ngModel)]="email" placeholder="E-mail" id="email" name="email" type="email" autofocus>
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" [(ngModel)]="password"  placeholder="Password" id="password" name="password" type="password" value="">
-                        </div>
-                        <!-- Change this to a button or input when using this as a form -->
-                        <button (click)="login()" type="submit" class="btn btn-lg btn-success btn-block">Se connecter</button>
-
-                        <div *ngIf="message" style="margin-top: 15px; color: rgb(167, 36, 36); font-weight: 500;">{{ message }}</div>
-                    </fieldset>
-                </div>
-            </div>
+    <div class="bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4">
+        <h1 class="text-2xl font-semibold text-gray-800 pb-6">Connexion</h1>
+        <div class="mb-6">
+          <label class="block text-gray-700 text-sm font-bold mb-2"  for="password">
+            Email
+          </label>
+          <input required [(ngModel)]="email" placeholder="john.doe@gmail.com" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="status" type="text">
+        </div>
+        <div class="mb-6">
+          <label class="block text-gray-700 text-sm font-bold mb-2"  for="password">
+            Mot de passe
+          </label>
+          <input required [(ngModel)]="password" placeholder="*********" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************">
+        </div>
+        <div *ngIf="message" class="text-xs pb-4 text-red-500">{{ message }}</div>
+        <div class="flex items-center justify-between">
+          <button (click)="login()" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+            Se connecter
+          </button>
         </div>
     </div>
 </div>

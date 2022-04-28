@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
     Education.find()
         .then(educations => res.json(educations))
         .catch(err => res.status(404).json({
-            message: 'Matières non trouvées.'
+            message: 'Enseignements non trouvés'
         }));
 });
 
@@ -16,7 +16,7 @@ router.get('/:id', (req, res) => {
     Education.findById(req.params.id)
         .then(education => res.json(education))
         .catch(err => res.status(404).json({
-            message: 'Matière non trouvé.'
+            message: 'Enseignement non trouvé'
         }));
 });
 
@@ -30,10 +30,10 @@ router.post('/', (req, res) => {
     });
     education.save()
         .then(() => res.json({
-            message: 'Matière créée.'
+            message: 'Enseignements créé'
         }))
         .catch(err => res.status(404).json({
-            message: 'Matière non créée.'
+            message: 'Enseignement non créé.'
         }));
 });
 
@@ -47,14 +47,14 @@ router.put('/:id', (req, res) => {
             education.maxHours = req.body.maxHours;
             education.save()
                 .then(() => res.json({
-                    message: 'Matière mise à jour.'
+                    message: 'Enseignement mis à jour'
                 }))
                 .catch(err => res.status(404).json({
-                    message: 'Matière non mise à jour.'
+                    message: 'Enseignement non mis à jour'
                 }));
         })
         .catch(err => res.status(404).json({
-            message: 'Matière non trouvée.'
+            message: 'Enseignement non trouvée'
         }));
 });
 
@@ -62,10 +62,10 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
     Education.findByIdAndDelete(req.params.id)
         .then(() => res.json({
-            message: 'Matière supprimée.'
+            message: 'Enseignement supprimé'
         }))
         .catch(err => res.status(404).json({
-            message: 'Matière non supprimée.'
+            message: 'Enseignement non supprimé'
         }));
 });
 

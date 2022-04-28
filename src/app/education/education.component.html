@@ -1,29 +1,85 @@
 <div>
-    <h2>Educations</h2>
-    <div *ngIf="!waiting">
-        <div *ngIf="education" style="background-color: rgb(245, 245, 245);
-        padding: 15px; margin-bottom: 20px; border-radius: 15px; box-shadow: 0px 5px 15px 0px rgba(128, 128, 128, 0.534);">
-            <div style="display: flex; justify-content: space-between; margin-top: -10px; ">
-                <h3>{{education['Formation']}}</h3>
-                <h4>{{education['Intitulé']}}</h4>
-            </div>
-            <div style="display: flex; justify-content: space-between;">
-                <p>{{education['Ref']}}</p>
-                <p>{{education['Semestre']}}</p>
-                <p>{{education['Statut']}}</p>
-                <p>{{education['Effectif']}}</p>
-            </div>
-            <div style="display: flex; justify-content: space-between;">
-                <p>{{education['grCM']}} gr. CM</p>
-                <p>{{education['grTD']}} gr. TD</p>
-                <p>{{education['grTP']}} gr. TP</p>
-                <p>{{education['h/CM']}} h/CM</p>
-                <p>{{education['h/TD']}} h/TD</p>
-                <p>{{education['h/TP']}} h/TP</p>
-            </div>
+    <div class="flex pb-4">
+        <button type="button" (click)="back()" class="text-white bg-teal-600 hover:bg-teal-800 font-medium rounded-lg text-sm px-5 py-2 mr-2 focus:outline-none">Retour</button>
+        <h1 class="text-lg my-auto pl-6">Informations de l'enseignement</h1>
+    </div>
+
+
+    <div *ngIf="!waiting && education" class="bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4">
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+                Formation
+            </label>
+            <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{education['Formation']}}</div>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+                Intitulé
+            </label>
+            <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{education['Intitulé']}}</div>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+                Référence
+            </label>
+            <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{education['Ref']}}</div>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+                Semestre
+            </label>
+            <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{education['Semestre']}}</div>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+                Statut
+            </label>
+            <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{education['Statut']}}</div>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+                Effectif
+            </label>
+            <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{education['Effectif']}}</div>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+                grCM
+            </label>
+            <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{education['grCM']}}</div>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+                grTD
+            </label>
+            <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{education['grTD']}}</div>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+                grTP
+            </label>
+            <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{education['grTP']}}</div>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+                h/CM
+            </label>
+            <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{education['h/CM']}}</div>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+                h/TD
+            </label>
+            <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{education['h/TD']}}</div>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+                h/TP
+            </label>
+            <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{education['h/TP']}}</div>
         </div>
     </div>
-    
+
     <div *ngIf="waiting" style="font-size: 34 px; padding: 35vh 0">
         Chargement ...
     </div>

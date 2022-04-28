@@ -8,15 +8,56 @@ export class AuthGuard implements CanActivate {
 
     constructor(private auth: AuthService, private router: Router) { }
 
-    canActivate(){
-        var response = this.auth.isAuth();
+    async canActivate() {
+        const token = localStorage.getItem('token') ?? '';
 
-        if(response){
-            return true;
-        } 
+        let res = await fetch('http://localhost:5000/api/auth/me', {
+            headers: new Headers({
+                'Authorization': 'Basic ' + token,
+            })
+        }).then(async res => {
+            let data = await res.json();
+            let _id = data.teacher.teacher._id;
+            let response = await fetch('http://localhost:5000/api/teachers/' + _id);
+            let teacher = await response.json();
+            if (teacher) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        });
 
-        this.router.navigate(['/login']);
-        return false;
+        if (!res) {
+            this.router.navigate(['/login']);
+        }
+        return res;
     }
 }
 
+
+//     const token = localStorage.getItem('token') ?? '';
+
+//     let res = await fetch('http://localhost:5000/api/auth/me', {
+//         headers: new Headers({
+//             'Authorization': 'Basic ' + token,
+//         })
+//     }).then(async res => {
+//         let data = await res.json();
+//         let _id = data.teacher.teacher._id;
+//         let response = await fetch('http://localhost:5000/api/teachers/' + _id);
+//         let teacher = await response.json();
+//         if(teacher.status == 'admin'){
+//             return true;
+//         }
+//         else{
+//             return false;
+//         }
+//     });
+
+//     if(!res){
+//         window.history.back();
+//     }
+
+//     return res;
+// }

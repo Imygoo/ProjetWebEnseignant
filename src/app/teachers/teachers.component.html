@@ -1,19 +1,21 @@
 <div>
-    <h2 class="py-4">Enseignements</h2>
-    
+    <h2 class="py-4">Enseignants</h2>
+    <div *ngIf="isAdmin" class="py-4 mb-4">
+        <a href="/teacher/post" class="my-4 text-white bg-teal-600 hover:bg-teal-800 font-medium rounded-lg text-sm px-5 py-2 mr-2 focus:outline-none">Créer un compte enseignant</a>
+    </div>
     <div *ngIf="!waiting">
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                     <tr>
                         <th scope="col" class="px-6 py-3">
-                            Formation
+                            Nom
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Référence
+                            Prénom
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Intitulé
+                            Statut
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Action
@@ -21,18 +23,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="bg-white border-b" *ngFor="let education of educationList">
+                    <tr class="bg-white border-b" *ngFor="let teacher of teacherList">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                            {{education['Formation']}}
+                            {{teacher['firstname']}}
                         </th>
                         <td class="px-6 py-4">
-                            {{education['Ref']}}
+                            {{teacher['lastname']}}
                         </td>
                         <td class="px-6 py-4">
-                            {{education['Intitulé']}}
+                            {{teacher['status']}}
                         </td>
                         <td class="px-6 py-4 text-right">
-                            <a (click)="onSelect(education['_id'])" class="cursor-pointer font-medium text-blue-600 hover:underline">Détails</a>
+                            <a (click)="onSelect(teacher['_id'])" class="pr-2 cursor-pointer font-medium text-blue-600 hover:underline">Détails</a>
+                            <a *ngIf="isAdmin" (click)="deleteTeacher(teacher['_id'])" class="cursor-pointer font-medium text-blue-600 hover:underline">Supprimer</a>
                         </td>
                     </tr>
                 </tbody>
