@@ -14,7 +14,7 @@ module.exports = function (app, server) {
         useUnifiedTopology: true
     })
         .then(() => console.log('DB is OK'))
-        .catch((error) => console.log(error+"DB failed"));
+        .catch((error) => console.log(error+" DB failed"));
 
     app.use(express.json());
     app.use(urlencoded({extended: true}));
