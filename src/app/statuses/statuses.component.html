@@ -1,0 +1,33 @@
+<div>
+    <h2 class="py-4">Statuts</h2>
+    <div *ngIf="!waiting">
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Nom
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-white border-b" *ngFor="let status of statusesList">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            {{status['name']}}
+                        </th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            <a (click)="onSelect(status['_id'])" class="pr-2 cursor-pointer font-medium text-blue-600 hover:underline">Détails</a>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div *ngIf="waiting" style="font-size: 34 px; padding: 35vh 0">
+        Chargement ...
+    </div>
+</div>

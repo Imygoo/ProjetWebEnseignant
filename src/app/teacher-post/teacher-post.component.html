@@ -27,13 +27,15 @@
             <label class="block text-gray-700 text-sm font-bold mb-2">
                 Statut
             </label>
-            <input [(ngModel)]="status" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            <select [(ngModel)]="status" class="cursor-pointer shadow pr-4 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option *ngFor="let status of statusList" [value]="status">{{ status }}</option>
+            </select>
         </div>
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2">
                 Nombre d'heures maximales
             </label>
-            <input [(ngModel)]="maxHours" type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            <input [(ngModel)]="nbUC" type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
         </div>
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2">

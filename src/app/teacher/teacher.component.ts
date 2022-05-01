@@ -15,26 +15,35 @@ export class TeacherComponent implements OnInit {
   firstname = '';
   lastname = '';
   email = '';
-  maxHours = 0;
+  nbUC = 0;
   password = '';
   status = '';
+
+  statusList:any = [];
   constructor(private route: ActivatedRoute) { }
 
   async ngOnInit(): Promise<void> {
     let id = this.route.snapshot.paramMap.get('id');
-    let response = await getTeacher(id);
+    let response = await this.getTeacher(id);
     this.teacher = response;
     if (this.teacher) {
       this._id = response._id;
       this.firstname = response.firstname;
       this.lastname = response.lastname;
       this.email = response.email;
-      this.maxHours = response.maxHours;
+      this.nbUC = response.nbUC;
       this.password = response.password;
       this.status = response.status;
     }
     this.waiting = false;
     this.verifAdmin();
+
+    let data = await this.getStatus();
+    let temp:any = [];
+    data.forEach((element: any) => {
+       temp.push(element.name);
+    });
+    this.statusList = temp;
   }
 
   async back() {
@@ -43,7 +52,7 @@ export class TeacherComponent implements OnInit {
 
   async save() {
     const token = localStorage.getItem('token') ?? '';
-    if (this.password != '' && this.status != '' && this.maxHours != 0 && this.firstname != '' && this.lastname != '' && this.email != '') {
+    if (this.password != '' && this.status != '' && this.firstname != '' && this.lastname != '' && this.email != '') {
       const res = await fetch('http://localhost:5000/api/teachers/' + this._id, {
         method: 'PUT',
         headers: new Headers({
@@ -53,12 +62,13 @@ export class TeacherComponent implements OnInit {
         body: JSON.stringify({
           firstname: this.firstname,
           lastname: this.lastname,
-          maxHours: this.maxHours,
+          nbUC: this.nbUC,
           password: this.password,
           status: this.status,
           email: this.email
         })
       });
+
       window.location.reload();
     } else {
       alert("Veuillez remplir tous les champs");
@@ -80,10 +90,16 @@ export class TeacherComponent implements OnInit {
       this.isAdmin = true;
     }
   }
-}
 
-async function getTeacher(id: any) {
-  const res = await fetch(`http://localhost:5000/api/teachers/${id}`);
-  const teacher = await res.json();
-  return teacher;
+  async getStatus() {
+    const res = await fetch('http://localhost:5000/api/status');
+    const response = await res.json();
+    return response;
+  }
+
+  async getTeacher(id: any) {
+    const res = await fetch(`http://localhost:5000/api/teachers/${id}`);
+    const teacher = await res.json();
+    return teacher;
+  }
 }

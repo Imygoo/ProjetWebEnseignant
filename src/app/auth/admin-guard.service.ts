@@ -8,7 +8,7 @@ export class AdminGuard implements CanActivate {
 
     constructor(private auth: AuthService, private router: Router) { }
 
-    async canActivate(){
+    async canActivate() {
         const token = localStorage.getItem('token') ?? '';
 
         let res = await fetch('http://localhost:5000/api/auth/me', {
@@ -17,18 +17,18 @@ export class AdminGuard implements CanActivate {
             })
         }).then(async res => {
             let data = await res.json();
-            let _id = data.teacher.teacher._id;
-            let response = await fetch('http://localhost:5000/api/teachers/' + _id);
-            let teacher = await response.json();
-            if(teacher.status == 'admin'){
-                return true;
+            if (data.success) {
+                let _id = data.teacher.teacher._id;
+                let response = await fetch('http://localhost:5000/api/teachers/' + _id);
+                let teacher = await response.json();
+                if (teacher.status == 'admin') {
+                    return true;
+                }
             }
-            else{
-                return false;
-            }
+            return false;
         });
 
-        if(!res){
+        if (!res) {
             window.history.back();
         }
 

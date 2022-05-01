@@ -6,7 +6,8 @@ const teacherSchema = mongoose.Schema({
     email: { type: String, required: true },
     password: { type: String, required: true },
     status: { type: String, required: true },
-    maxHours: { type: Number, required: true },
+    nbUC: { type: Number, required: false },
+    subscribed: { type: Array, required: false },
 });
 
 module.exports = mongoose.model('Teacher', teacherSchema);

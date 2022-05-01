@@ -5,6 +5,8 @@ const { urlencoded } = require('body-parser');
 const TeacherRoutes = require('./routes/teachers');
 const EducationRoutes = require('./routes/educations');
 const AuthRoutes = require('./routes/auth');
+const StatusRoute = require('./routes/status');
+
 
 // export one function that gets called once as the server is being initialized
 module.exports = function (app, server) {
@@ -29,4 +31,5 @@ module.exports = function (app, server) {
     app.use('/api/auth', AuthRoutes);
     app.use('/api/teachers', TeacherRoutes);
     app.use('/api/educations', EducationRoutes);
+    app.use('/api/status', StatusRoute);
 }

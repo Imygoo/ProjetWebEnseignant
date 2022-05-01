@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         status: req.body.status,
-        maxHours: req.body.maxHours,
+        nbUC: req.body.nbUC,
         email: req.body.email,
         password: req.body.password
     });
@@ -46,7 +46,7 @@ router.put('/:id', (req, res) => {
         req.body.firstname != null ? teacher.firstname = req.body.firstname : null;
         req.body.lastname != null ? teacher.lastname = req.body.lastname : null;
         req.body.status != null ? teacher.status = req.body.status : null;
-        req.body.maxHours != null ? teacher.maxHours = req.body.maxHours : null;
+        req.body.nbUC != null ? teacher.nbUC = req.body.nbUC : null;
         req.body.email != null ? teacher.email = req.body.email : null;
         req.body.password != null ? teacher.password = req.body.password : null;
 
@@ -71,6 +71,38 @@ router.delete('/:id', (req, res) => {
         .catch(err => res.status(404).json({
             message: 'Enseignant non supprimé'
         }));
+});
+
+// add an id in subscribed 
+router.post('/subscribe/:id', (req, res) => {
+    Teacher.findById(req.params.id).then(teacher => {
+        teacher.subscribed.push(req.body.id);
+        teacher.save()
+            .then(() => res.json({
+                message: 'Enseignant mis à jour'
+            }))
+            .catch(err => res.status(404).json({
+                message: 'Enseignant non mis à jour' + err
+            }));
+    }).catch(err => res.status(404).json({
+        message: 'Enseignant non trouvé'
+    }));
+});
+
+// remove an id in subscribed
+router.post('/unsubscribe/:id', (req, res) => {
+    Teacher.findById(req.params.id).then(teacher => {
+        teacher.subscribed.pull(req.body.id);
+        teacher.save()
+            .then(() => res.json({
+                message: 'Enseignant mis à jour'
+            }))
+            .catch(err => res.status(404).json({
+                message: 'Enseignant non mis à jour' + err
+            }));
+    }).catch(err => res.status(404).json({
+        message: 'Enseignant non trouvé'
+    }));
 });
 
 

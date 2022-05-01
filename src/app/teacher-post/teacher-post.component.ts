@@ -10,13 +10,21 @@ export class TeacherPostComponent implements OnInit {
   firstname = '';
   lastname = '';
   email = '';
-  maxHours = 0;
+  nbUC = 0;
   password = '';
   status = '';
+
+  statusList:any = [];
 
   constructor() { }
 
   async ngOnInit(): Promise<void> {
+    let data = await this.getStatus();
+    let temp:any = [];
+    data.forEach((element: any) => {
+       temp.push(element.name);
+    });
+    this.statusList = temp;
   }
 
   async back() {
@@ -33,12 +41,19 @@ export class TeacherPostComponent implements OnInit {
         firstname: this.firstname,
         lastname: this.lastname,
         email: this.email,
-        maxHours: this.maxHours,
+        nbUC: this.nbUC,
         password: this.password,
         status: this.status
       })
     });
     const response = await res.json();
     window.history.back();
+  }
+
+  // get all status
+  async getStatus() {
+    const res = await fetch('http://localhost:5000/api/status');
+    const response = await res.json();
+    return response;
   }
 }

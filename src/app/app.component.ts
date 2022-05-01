@@ -7,8 +7,7 @@ import axios from 'axios';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'applienseignant';
-
+  title = 'Appli Enseignant';
   isAuth = false;
 
   ngOnInit(): void {
@@ -22,25 +21,20 @@ export class AppComponent {
 
   async verifAuth() {
     const token = localStorage.getItem('token') ?? '';
-    let res = await fetch('http://localhost:5000/api/auth/me', {
+    var promise = await fetch('http://localhost:5000/api/auth/me', {
       headers: new Headers({
         'Authorization': 'Basic ' + token,
       })
-    }).then(async res => {
-      let data = await res.json();
-      let _id = data.teacher.teacher._id;
-      let response = await fetch('http://localhost:5000/api/teachers/' + _id);
-      let teacher = await response.json();
-      if (teacher) {
-        return true;
-      }
-      else {
-        return false;
-      }
     });
 
-    if (res) {
-      this.isAuth = true;
+    var response = await promise.json();
+    if (response.success) {
+      var _id = response.teacher.teacher._id;
+      promise = await fetch('http://localhost:5000/api/teachers/' + _id);
+      var teacher = await promise.json();
+      if (teacher) {
+        this.isAuth = true;
+      }
     }
   }
 }

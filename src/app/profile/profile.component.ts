@@ -13,10 +13,12 @@ export class ProfileComponent implements OnInit {
   show_lastname = "";
   firstname = "";
   lastname = "";
-  maxHours = 0;
+  nbUC = 0;
   status = "";
   password = "";
   email = "";
+
+  isVac = false;
 
   constructor() { }
 
@@ -29,16 +31,20 @@ export class ProfileComponent implements OnInit {
       this.show_lastname = response.lastname;
       this.firstname = response.firstname;
       this.lastname = response.lastname;
-      this.maxHours = response.maxHours;
+      this.nbUC = response.nbUC;
       this.status = response.status;
       this.password = response.password;
       this.email = response.email;
+
+      if (response.status == "Vacataire") {
+        this.isVac = true;
+      }
     }
   }
 
   async save() {
     const token = localStorage.getItem('token') ?? '';
-    if (this.firstname != '' && this.lastname != '' && this.maxHours != 0 && this.password != '') {
+    if (this.firstname != '' && this.lastname != '' && this.nbUC != null && this.password != '') {
 
       const res = await fetch('http://localhost:5000/api/teachers/' + this._id, {
         method: 'PUT',
@@ -49,7 +55,7 @@ export class ProfileComponent implements OnInit {
         body: JSON.stringify({
           firstname: this.firstname,
           lastname: this.lastname,
-          maxHours: this.maxHours,
+          nbUC: this.nbUC,
           password: this.password
         })
       });
