@@ -20,46 +20,39 @@ export class EducationsComponent implements OnInit {
     this.educationList = await getEducationList();
     this.waiting = false;
     let temp = await this.getSubscribedList();
-    this.subscribedList = temp.subscribed;
-    console.log(this.subscribedList);
+    temp.forEach((element: any) => {
+      this.subscribedList.push(element.id_education);
+    });
   }
 
-  onSelect(_id: string) {
+  async onSelect(_id: string) {
     this.router.navigate(['/education', _id]);
   }
 
   // subcribed to the event
-  async subscribe(id: any) {
-    if (!this.isInList(id)) {
-      await fetch('http://localhost:5000/api/teachers/subscribe/' + this.user._id, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          id: id
-        })
-      });
-      window.location.reload();
-    }
-    else{
-      alert('You are already subscribed to this event');
-    }
+  async subscribe(_id: string) {
+    this.router.navigate(['/education-subscribe', _id]);
   }
 
-  // async unsubscribe(_id: any) {
-  //   await fetch('http://localhost:5000/api/teachers/unsubscribe/' + _id, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     }
-  //   });
-  //   window.location.reload();
-  // }
+  async unsubscribe(_id: any) {
+    let response = await fetch('http://localhost:5000/api/subscriptions/unsubscribe', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id_education: _id,
+        id_user: this.user._id
+      })
+    });
+    let data = await response.json();
+    window.location.reload();
+  }
 
   async getSubscribedList() {
-    let response = await fetch('http://localhost:5000/api/teachers/' + this.user._id);
-    return await response.json();
+    let response = await fetch('http://localhost:5000/api/subscriptions/user/' + this.user._id);
+    let data = await response.json();
+    return data;
   }
 
   isInList(_id: any) {

@@ -6,6 +6,7 @@ const TeacherRoutes = require('./routes/teachers');
 const EducationRoutes = require('./routes/educations');
 const AuthRoutes = require('./routes/auth');
 const StatusRoute = require('./routes/status');
+const SubscriptionRoutes = require('./routes/subscriptions');
 
 
 // export one function that gets called once as the server is being initialized
@@ -32,4 +33,5 @@ module.exports = function (app, server) {
     app.use('/api/teachers', TeacherRoutes);
     app.use('/api/educations', EducationRoutes);
     app.use('/api/status', StatusRoute);
+    app.use('/api/subscriptions', SubscriptionRoutes);
 }
