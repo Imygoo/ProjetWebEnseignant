@@ -3,12 +3,16 @@ module.exports = {
     './src/**/*.html',
     "./src/**/*.{html,ts,component,style,scss,css,less,sass}",
   ],
-  purge: {
-    enabled: true,
-    content: ['./src/**/*.html', './src/**/*.ts'],
-  },
+  purge: [
+    './src/**/*.html',
+    "./src/**/*.{html,ts,component,style,scss,css,less,sass}",
+  ],
   theme: {
     extend: {},
   },
   plugins: [],
+  // auto refresh
+  devServer: {
+    liveReload: true,
+  },
 }
