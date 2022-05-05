@@ -5,7 +5,120 @@
     </div>
 
 
-    <div *ngIf="!waiting && education" class="bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4">
+    <div *ngIf="!waiting && education">
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left text-gray-500">
+                    <tr class="bg-white">
+                        <th scope="col" class="px-6 py-3">
+                            Formation
+                        </th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900">
+                            {{education['Formation']}}
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Intitulé
+                        </th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900">
+                            {{education['Intitulé']}}
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr class="bg-white">
+                        <th scope="col" class="px-6 py-3">
+                            Référence
+                        </th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900">
+                            {{education['Ref']}}
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Semestre
+                        </th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900">
+                            {{education['Semestre']}}
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr class="bg-white">
+                        <th scope="col" class="px-6 py-3">
+                            Statut
+                        </th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900">
+                            {{education['Statut']}}
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Effectif
+                        </th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900">
+                            {{education['Effectif']}}
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr class="bg-white">
+                        <th scope="col" class="px-6 py-3">
+                            Groupe CM
+                        </th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900">
+                            {{education['grCM']}}
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Heure CM
+                        </th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900">
+                            {{education['h/CM']}}
+                        </th>
+                    </tr>
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Groupe TD
+                        </th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900">
+                            {{education['grTD']}}
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Heure TD
+                        </th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900">
+                            {{education['h/TD']}}
+                        </th>
+                    </tr>
+                    <tr class="bg-white">
+                        <th scope="col" class="px-6 py-3">
+                            Groupe TP
+                        </th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900">
+                            {{education['grTP']}}
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Heure TP
+                        </th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900">
+                            {{education['h/TP']}}
+                        </th>
+                    </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="flex pb-4">
+        <h1 class="text-lg my-auto pl-6">Enseignants inscrits</h1>
+    </div>
+
+    <!-- <div *ngIf="!waiting && education" class="bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4">
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2">
                 Formation
@@ -78,7 +191,7 @@
             </label>
             <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{education['h/TP']}}</div>
         </div>
-    </div>
+    </div> -->
 
     <div *ngIf="waiting" style="font-size: 34 px; padding: 35vh 0">
         Chargement ...

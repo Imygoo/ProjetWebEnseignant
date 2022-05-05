@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         status: req.body.status,
-        maxHours: req.body.maxHours
+        nbUc: req.body.nbUc
     });
     education.save()
         .then(() => res.json({
@@ -44,7 +44,7 @@ router.put('/:id', (req, res) => {
             education.firstname = req.body.firstname;
             education.lastname = req.body.lastname;
             education.status = req.body.status;
-            education.maxHours = req.body.maxHours;
+            education.nbUc = req.body.nbUc;
             education.save()
                 .then(() => res.json({
                     message: 'Enseignement mis à jour'
