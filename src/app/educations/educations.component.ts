@@ -43,7 +43,7 @@ export class EducationsComponent implements OnInit {
       window.location.reload();
     }
     else{
-      alert('You are already subscribed to this event');
+      alert('Vous etes déjà inscrit à cet enseignement');
     }
   }
 
