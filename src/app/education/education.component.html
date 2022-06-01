@@ -115,7 +115,8 @@
     </div>
 
     <div class="flex py-4">
-        <h1 class="text-lg my-auto pl-6">Enseignants inscrits</h1>
+        <h1 *ngIf="isAdmin" class="text-lg my-auto pl-6">Enseignants disponibles à l'inscription</h1>
+        <h1 *ngIf="!isAdmin" class="text-lg my-auto pl-6">Enseignants inscrits à l'UE</h1>
     </div>
 
     <div *ngIf="!waiting && education">
