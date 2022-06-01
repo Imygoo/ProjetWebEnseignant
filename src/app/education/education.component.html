@@ -118,6 +118,56 @@
         <h1 class="text-lg my-auto pl-6">Enseignants inscrits</h1>
     </div>
 
+    <div *ngIf="!waiting && education">
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left text-gray-500">
+                <tr class="bg-white">
+                    <th scope="col" class="px-6 py-3">
+                        Nom
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Prénom
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Email
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Statut
+                    </th>
+                    <th *ngIf="isAdmin" scope="col" class="px-6 py-3">
+                        Inscription
+                    </th>
+                </tr>
+                <tr *ngFor="let teacher of teachers">
+                    <td scope="col" class="px-6 py-4 font-medium text-gray-900"
+                        *ngIf="isInList(teacher['_id']) || isAdmin">
+                        {{teacher['firstname']}}
+                    </td>
+                    <td scope="col" class="px-6 py-4 font-medium text-gray-900"
+                        *ngIf="isInList(teacher['_id']) || isAdmin">
+                        {{teacher['lasname']}}
+                    </td>
+                    <td scope="col" class="px-6 py-4 font-medium text-gray-900"
+                        *ngIf="isInList(teacher['_id']) || isAdmin">
+                        {{teacher['email']}}
+                    </td>
+                    <td scope="col" class="px-6 py-4 font-medium text-gray-900"
+                        *ngIf="isInList(teacher['_id']) || isAdmin">
+                        {{teacher['status']}}
+                    </td>
+                    <td *ngIf="isAdmin" class="px-6 py-4 font-medium text-gray-900">
+                        <a *ngIf="!isInList(teacher['_id'])" (click)="subscribe(teacher['_id'], education._id)"
+                            class="text-left cursor-pointer font-medium text-blue-600 hover:underline mr-4">Inscrire</a>
+                        <a *ngIf="isInList(teacher['_id'])" (click)="unsubscribe(teacher['_id'], education._id)"
+                            class="text-left cursor-pointer font-medium text-blue-600 hover:underline mr-4">Désinscrire</a>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+
     <!-- <div *ngIf="!waiting && education" class="bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4">
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2">

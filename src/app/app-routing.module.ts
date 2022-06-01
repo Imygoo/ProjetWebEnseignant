@@ -10,11 +10,11 @@ import { TeacherComponent } from './teacher/teacher.component';
 import { StatusesComponent } from './statuses/statuses.component';
 import { StatusComponent } from './status/status.component';
 import { EducationSubscribeComponent } from './education-subscribe/education-subscribe.component';
+import { EducationSubscribeAdminComponent } from './education-subscribe-admin/education-subscribe-admin.component';
 import { TeacherPostComponent } from './teacher-post/teacher-post.component';
 
 import { AuthGuard } from './auth/auth-guard.service';
 import { AdminGuard } from './auth/admin-guard.service';
-
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -28,6 +28,7 @@ const routes: Routes = [
   { path: 'statuses', component: StatusesComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'status/:id', component: StatusComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'education-subscribe/:id', component: EducationSubscribeComponent, canActivate: [AuthGuard] },
+  { path: 'education-subscribe-admin/:id_user/:id_education', component: EducationSubscribeAdminComponent, canActivate: [AuthGuard, AdminGuard] },
 ];
 
 @NgModule({

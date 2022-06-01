@@ -32,8 +32,8 @@
                             {{education['Intitulé']}}
                         </td>
                         <td class="flex px-6 py-4 text-right">
-                            <a *ngIf="!isInList(education['_id'])" (click)="subscribe(education['_id'])" class="text-left cursor-pointer font-medium text-blue-600 hover:underline mr-4">S'inscrire</a>
-                            <a *ngIf="isInList(education['_id'])" (click)="unsubscribe(education['_id'])" class="text-left cursor-pointer font-medium text-blue-600 hover:underline mr-4">Se désinscrire</a>
+                            <a *ngIf="!isInList(education['_id']) && !isVac" (click)="subscribe(education['_id'])" class="text-left cursor-pointer font-medium text-blue-600 hover:underline mr-4">S'inscrire</a>
+                            <a *ngIf="isInList(education['_id']) && !isVac" (click)="unsubscribe(education['_id'])" class="text-left cursor-pointer font-medium text-blue-600 hover:underline mr-4">Se désinscrire</a>
                             <a (click)="onSelect(education['_id'])" class="w-full text-center cursor-pointer font-medium text-blue-600 hover:underline">Détails</a>
                         </td>
                     </tr>

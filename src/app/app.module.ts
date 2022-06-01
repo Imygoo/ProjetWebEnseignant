@@ -18,6 +18,7 @@ import { TeacherPostComponent } from './teacher-post/teacher-post.component';
 import { StatusesComponent } from './statuses/statuses.component';
 import { StatusComponent } from './status/status.component';
 import { EducationSubscribeComponent } from './education-subscribe/education-subscribe.component';
+import { EducationSubscribeAdminComponent } from './education-subscribe-admin/education-subscribe-admin.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { EducationSubscribeComponent } from './education-subscribe/education-sub
     TeacherPostComponent,
     StatusesComponent,
     StatusComponent,
-    EducationSubscribeComponent
+    EducationSubscribeComponent,
+    EducationSubscribeAdminComponent
   ],
   imports: [
     BrowserModule,
