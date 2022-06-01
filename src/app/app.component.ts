@@ -9,6 +9,7 @@ import axios from 'axios';
 export class AppComponent {
   title = 'Appli Enseignant';
   isAuth = false;
+  isAdmin = false;
 
   ngOnInit(): void {
     this.verifAuth();
@@ -34,6 +35,7 @@ export class AppComponent {
       var teacher = await promise.json();
       if (teacher) {
         this.isAuth = true;
+        this.isAdmin = (teacher.status == 'admin');
       }
     }
   }

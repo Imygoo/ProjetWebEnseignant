@@ -36,23 +36,26 @@ export class EducationsComponent implements OnInit {
   }
 
   // subcribed to the event
-  async subscribe(id: any) {
-    if (!this.isInList(id)) {
-      await fetch('http://localhost:5000/api/teachers/subscribe/' + this.user._id, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          id: id
-        })
-      });
-      window.location.reload();
-    }
-    else{
-      alert('Vous etes déjà inscrit à cet enseignement');
-    }
+  async subscribe(_id: string) {
+    this.router.navigate(['/education-subscribe', _id]);
   }
+  // async subscribe(id: any) {
+  //   if (!this.isInList(id)) {
+  //     await fetch('http://localhost:5000/api/teachers/subscribe/' + this.user._id, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({
+  //         id: id
+  //       })
+  //     });
+  //     window.location.reload();
+  //   }
+  //   else{
+  //     alert('Vous etes déjà inscrit à cet enseignement');
+  //   }
+  // }
 
   async unsubscribe(_id: any) {
     let response = await fetch('http://localhost:5000/api/subscriptions/unsubscribe', {
