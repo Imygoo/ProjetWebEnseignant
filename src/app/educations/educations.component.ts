@@ -12,6 +12,8 @@ export class EducationsComponent implements OnInit {
   user: any = null;
   educationList = [];
   subscribedList: any = [];
+  isVac: any = false;
+
   constructor(private router: Router) { }
 
   async ngOnInit(): Promise<void> {
@@ -23,6 +25,10 @@ export class EducationsComponent implements OnInit {
     temp.forEach((element: any) => {
       this.subscribedList.push(element.id_education);
     });
+
+    if (this.user.status == "Vacataire") {
+      this.isVac = true;
+    }
   }
 
   async onSelect(_id: string) {

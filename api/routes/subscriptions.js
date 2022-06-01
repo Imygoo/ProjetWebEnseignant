@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const Subscription = require('../models/subscription');
 const Education = require('../models/education');
+const Teacher = require('../models/teacher');
 
 // get all subscriptions
 router.get('/', (req, res) => {
@@ -64,6 +65,17 @@ router.get('/:id', (req, res) => {
         .then(subscription => res.json(subscription))
         .catch(err => res.status(404).json({
             message: 'Inscription non trouvé'
+        }));
+});
+
+// get by education id
+router.get('/education/:id', (req, res) => {
+    Subscription.find({
+        id_education: req.params.id
+    })
+        .then(subscriptions => {res.json(subscriptions)})
+        .catch(err => res.status(404).json({
+            message: 'Inscription non trouvés'
         }));
 });
 
