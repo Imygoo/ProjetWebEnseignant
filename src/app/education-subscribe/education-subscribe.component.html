@@ -1,0 +1,46 @@
+<div *ngIf="education" class="px-4">
+    <!-- tailwind input text -->
+    <div class="bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4">
+        <h1 class="text-xl font-semibold text-gray-800 pb-6">Formulaire d'inscription</h1>
+
+        <span>
+            {{ education['Formation'] + " - " + education['Intitulé'] }}
+        </span>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="firstname">
+                Nombre de groupe de CM
+            </label>
+            <input disabled="{{ max_grCM == '' || max_grCM == 0 }}" onkeydown="return false" min="0" max="{{max_grCM != null ? max_grCM : 0}}" required [(ngModel)]="grCM"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="grCM" type="number">
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="firstname">
+                Nombre de groupe de TD
+            </label>
+            <input disabled="{{ max_grTD == '' || max_grTD == 0 }}" onkeydown="return false" min="0" max="{{max_grTD != null ? max_grTD : 0}}" required [(ngModel)]="grTD"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="grCM" type="number">
+        </div>
+
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="firstname">
+                Nombre de groupe de TP
+            </label>
+            <input disabled="{{ max_grTP == '' || max_grTP == 0 }}" onkeydown="return false" min="0" max="{{max_grTP != null ? max_grTP : 0}}" required [(ngModel)]="grTP"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="grCM" type="number">
+        </div>
+
+        <div class="flex items-center justify-between">
+            <button (click)="subscribe()"
+                class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="button">
+                S'inscrire
+            </button>
+        </div>
+    </div>
+</div>

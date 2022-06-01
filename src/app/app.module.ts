@@ -17,6 +17,7 @@ import { AdminGuard } from './auth/admin-guard.service';
 import { TeacherPostComponent } from './teacher-post/teacher-post.component';
 import { StatusesComponent } from './statuses/statuses.component';
 import { StatusComponent } from './status/status.component';
+import { EducationSubscribeComponent } from './education-subscribe/education-subscribe.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { StatusComponent } from './status/status.component';
     TeacherComponent,
     TeacherPostComponent,
     StatusesComponent,
-    StatusComponent
+    StatusComponent,
+    EducationSubscribeComponent
   ],
   imports: [
     BrowserModule,
