@@ -19,7 +19,12 @@ export class TeacherComponent implements OnInit {
   password = '';
   status = '';
 
-  statusList:any = [];
+  statusList: any = [];
+
+  statusUser: any = null;
+  subscriptions: any = [];
+  totalUC: any = 0;
+
   constructor(private route: ActivatedRoute) { }
 
   async ngOnInit(): Promise<void> {
@@ -34,16 +39,32 @@ export class TeacherComponent implements OnInit {
       this.nbUC = response.nbUC;
       this.password = response.password;
       this.status = response.status;
+
+
+      this.statusUser = await this.getStatus(this.status);
+      let subscriptions = await this.getSubscriptions();
+      subscriptions.forEach(async (e: any) => {
+        let education = await this.getEducation(e.id_education);
+        e.education = education;
+        this.subscriptions.push(e);
+
+        this.totalUC += (e.grCM * this.statusUser.heureCM) + (e.grTD * this.statusUser.heureTD) + (e.grTP * this.statusUser.heureTP);
+      });
+
     }
     this.waiting = false;
     this.verifAdmin();
 
-    let data = await this.getStatus();
-    let temp:any = [];
+    let data = await this.getStatuses();
+    let temp: any = [];
     data.forEach((element: any) => {
-       temp.push(element.name);
+      temp.push(element.name);
     });
     this.statusList = temp;
+
+
+
+
   }
 
   async back() {
@@ -91,7 +112,7 @@ export class TeacherComponent implements OnInit {
     }
   }
 
-  async getStatus() {
+  async getStatuses() {
     const res = await fetch('http://localhost:5000/api/status');
     const response = await res.json();
     return response;
@@ -101,5 +122,40 @@ export class TeacherComponent implements OnInit {
     const res = await fetch(`http://localhost:5000/api/teachers/${id}`);
     const teacher = await res.json();
     return teacher;
+  }
+
+  /////////////////////////////////////
+
+  async getSubscriptions() {
+    const token = localStorage.getItem('token') ?? '';
+    let res = await fetch('http://localhost:5000/api/subscriptions/user/' + this._id, {
+      headers: new Headers({
+        'Authorization': 'Basic ' + token,
+      })
+    });
+    const response = await res.json();
+    return response;
+  }
+
+  async getEducation(_id: any) {
+    const token = localStorage.getItem('token') ?? '';
+    let res = await fetch('http://localhost:5000/api/educations/' + _id, {
+      headers: new Headers({
+        'Authorization': 'Basic ' + token,
+      })
+    });
+    const response = await res.json();
+    return response;
+  }
+
+  async getStatus(name: any) {
+    const token = localStorage.getItem('token') ?? '';
+    let res = await fetch('http://localhost:5000/api/status/name/' + name, {
+      headers: new Headers({
+        'Authorization': 'Basic ' + token,
+      })
+    });
+    const response = await res.json();
+    return response[0];
   }
 }

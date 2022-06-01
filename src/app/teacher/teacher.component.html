@@ -50,6 +50,97 @@
           </div>
     </div>
 
+    <div>
+        <h1 class="py-4">Récapitulatif de l'enseignant</h1>
+    
+        <div *ngIf="!subscriptions">
+            Vous n'êtes inscrit à aucun enseignement.
+        </div>
+        <table *ngIf="subscriptions" class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Formation
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Référence
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Intitulé
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        nbCM
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        nbTD
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        nbTP
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Total UC
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-white border-b" *ngFor="let subscription of subscriptions">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        {{subscription.education['Formation']}}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{subscription.education['Ref']}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{subscription.education['Intitulé']}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ subscription.grCM }}
+    
+                        <br>
+                        <br>
+                        <hr>
+                        <hr>
+                        <br>
+                        <span class="text-xs font-semibold uppercase">
+                            Total UC
+                            {{ subscription.grCM * statusUser.heureCM }}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4">
+                        {{subscription.grTD}}
+                        <br>
+                        <br>
+                        <hr>
+                        <hr>
+                        <br>
+                        <span class="text-xs font-semibold uppercase">
+                            Total UC
+                            {{ subscription.grTD * statusUser.heureTD }}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4">
+                        {{subscription.grTP}}
+                        <br>
+                        <br>
+                        <hr>
+                        <hr>
+                        <br>
+                        <span class="text-xs font-semibold uppercase">
+                            Total UC
+                            {{ subscription.grTP * statusUser.heureTP }}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4">
+                        {{subscription.grCM * statusUser.heureCM + subscription.grTD * statusUser.heureTD + subscription.grTP *
+                            statusUser.heureTP}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    
+        <h1 class="py-4 text-xl tracking-widest">Nombre total d'UC pour l'enseignant : {{ totalUC }} / {{ nbUC }}</h1>
+    </div>
+
     <div *ngIf="waiting" style="font-size: 34 px; padding: 35vh 0">
         Chargement ...
     </div>

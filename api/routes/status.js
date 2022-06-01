@@ -22,6 +22,16 @@ router.get('/:id', (req, res) => {
     });
 });
 
+// by name
+router.get('/name/:name', (req, res) => {
+    Status.find({ name: req.params.name }, (err, status) => {
+        if (err) {
+            res.send(err);
+        }
+        res.json(status);
+    });
+});
+
 // update
 router.put('/:id', (req, res) => {
     Status.findById(req.params.id, (err, status) => {
