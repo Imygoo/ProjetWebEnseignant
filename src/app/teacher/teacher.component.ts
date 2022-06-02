@@ -48,7 +48,7 @@ export class TeacherComponent implements OnInit {
         e.education = education;
         this.subscriptions.push(e);
 
-        this.totalUC += (e.grCM * this.statusUser.heureCM) + (e.grTD * this.statusUser.heureTD) + (e.grTP * this.statusUser.heureTP);
+        this.totalUC += (e.grCM * this.statusUser.heureCM * e.education['h/CM']) + (e.grTD * this.statusUser.heureTD * e.education['h/TD']) + (e.grTP * this.statusUser.heureTP * e.education['h/TP']);
       });
 
     }

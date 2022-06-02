@@ -103,7 +103,7 @@
                         <br>
                         <span class="text-xs font-semibold uppercase">
                             Total UC
-                            {{ subscription.grCM * statusUser.heureCM }}
+                            {{ subscription.grCM * statusUser.heureCM * subscription.education['h/CM']}}
                         </span>
                     </td>
                     <td class="px-6 py-4">
@@ -115,7 +115,7 @@
                         <br>
                         <span class="text-xs font-semibold uppercase">
                             Total UC
-                            {{ subscription.grTD * statusUser.heureTD }}
+                            {{ subscription.grTD * statusUser.heureTD * subscription.education['h/TD']}}
                         </span>
                     </td>
                     <td class="px-6 py-4">
@@ -127,12 +127,11 @@
                         <br>
                         <span class="text-xs font-semibold uppercase">
                             Total UC
-                            {{ subscription.grTP * statusUser.heureTP }}
+                            {{ subscription.grTP * statusUser.heureTP * subscription.education['h/TP']}}
                         </span>
                     </td>
                     <td class="px-6 py-4">
-                        {{subscription.grCM * statusUser.heureCM + subscription.grTD * statusUser.heureTD + subscription.grTP *
-                            statusUser.heureTP}}
+                        {{subscription.grCM * statusUser.heureCM * subscription.education['h/CM'] + subscription.grTD * statusUser.heureTD * subscription.education['h/TD'] + subscription.grTP * statusUser.heureTP * subscription.education['h/TD']}}
                     </td>
                 </tr>
             </tbody>
