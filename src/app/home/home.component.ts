@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
         e.education = education;
         this.subscriptions.push(e);
 
-        this.totalUC += (e.grCM * this.status.heureCM) + (e.grTD * this.status.heureTD) + (e.grTP * this.status.heureTP);
+        this.totalUC += (e.grCM * this.status.heureCM * e.education['h/CM']) + (e.grTD * this.status.heureTD * e.education['h/TD']) + (e.grTP * this.status.heureTP * e.education['h/TP']);
       });
 
 

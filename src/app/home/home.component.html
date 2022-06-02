@@ -21,13 +21,13 @@
                     Intitulé
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    nbCM
+                    Groupe CM
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    nbTD
+                    Groupe TD
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    nbTP
+                    Groupe TP
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Total UC
@@ -47,7 +47,14 @@
                 </td>
                 <td class="px-6 py-4">
                     {{ subscription.grCM }}
-
+                    <br>
+                    <br>
+                    <hr>
+                    <hr>
+                    <br>
+                    <span class="text-xs font-semibold uppercase">
+                        {{ subscription.education['h/CM']}} Heure(s)
+                    </span>
                     <br>
                     <br>
                     <hr>
@@ -55,7 +62,7 @@
                     <br>
                     <span class="text-xs font-semibold uppercase">
                         Total UC
-                        {{ subscription.grCM * status.heureCM }}
+                        {{ subscription.grCM * status.heureCM * subscription.education['h/CM']}}
                     </span>
                 </td>
                 <td class="px-6 py-4">
@@ -66,8 +73,16 @@
                     <hr>
                     <br>
                     <span class="text-xs font-semibold uppercase">
+                        {{ subscription.education['h/TD']}} Heure(s)
+                    </span>
+                    <br>
+                    <br>
+                    <hr>
+                    <hr>
+                    <br>
+                    <span class="text-xs font-semibold uppercase">
                         Total UC
-                        {{ subscription.grTD * status.heureTD }}
+                        {{ subscription.grTD * status.heureTD * subscription.education['h/TD']}}
                     </span>
                 </td>
                 <td class="px-6 py-4">
@@ -78,19 +93,27 @@
                     <hr>
                     <br>
                     <span class="text-xs font-semibold uppercase">
+                        {{ subscription.education['h/TP']}} Heure(s)
+                    </span>
+                    <br>
+                    <br>
+                    <hr>
+                    <hr>
+                    <br>
+                    <span class="text-xs font-semibold uppercase">
                         Total UC
-                        {{ subscription.grTP * status.heureTP }}
+                        {{ subscription.grTP * status.heureTP * subscription.education['h/TP']}}
                     </span>
                 </td>
                 <td class="px-6 py-4">
-                    {{subscription.grCM * status.heureCM + subscription.grTD * status.heureTD + subscription.grTP *
-                    status.heureTP}}
+                    {{subscription.grCM * status.heureCM * subscription.education['h/CM']+ subscription.grTD * status.heureTD * subscription.education['h/TD'] + subscription.grTP *
+                    status.heureTP * subscription.education['h/TP']}}
                 </td>
             </tr>
         </tbody>
     </table>
 
-    <h1 class="py-4 text-xl tracking-widest">Nombre total d'UC pour l'enseignant : {{ totalUC }} / {{ nbUC }}</h1>
+    <h1 class="py-4">Nombre total d'UC pour l'enseignant : {{ totalUC }} / {{ nbUC }}</h1>
 </div>
 
 <div *ngIf="isAdmin">

@@ -33,7 +33,7 @@ router.post('/', (req, res) => {
             message: 'Enseignements créé'
         }))
         .catch(err => res.status(404).json({
-            message: 'Enseignement non créé.'
+            message: 'Enseignement non créé'
         }));
 });
 
@@ -54,7 +54,7 @@ router.put('/:id', (req, res) => {
                 }));
         })
         .catch(err => res.status(404).json({
-            message: 'Enseignement non trouvée'
+            message: 'Enseignement non trouvé'
         }));
 });
 

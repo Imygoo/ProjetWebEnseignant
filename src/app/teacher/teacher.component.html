@@ -95,7 +95,14 @@
                     </td>
                     <td class="px-6 py-4">
                         {{ subscription.grCM }}
-    
+                        <br>
+                        <br>
+                        <hr>
+                        <hr>
+                        <br>
+                        <span class="text-xs font-semibold uppercase">
+                            {{ subscription.education['h/CM']}} Heure(s)
+                        </span>
                         <br>
                         <br>
                         <hr>
@@ -114,12 +121,28 @@
                         <hr>
                         <br>
                         <span class="text-xs font-semibold uppercase">
+                            {{ subscription.education['h/TD']}} Heure(s)
+                        </span>
+                        <br>
+                        <br>
+                        <hr>
+                        <hr>
+                        <br>
+                        <span class="text-xs font-semibold uppercase">
                             Total UC
                             {{ subscription.grTD * statusUser.heureTD * subscription.education['h/TD']}}
                         </span>
                     </td>
                     <td class="px-6 py-4">
                         {{subscription.grTP}}
+                        <br>
+                        <br>
+                        <hr>
+                        <hr>
+                        <br>
+                        <span class="text-xs font-semibold uppercase">
+                            {{ subscription.education['h/TP']}} Heure(s)
+                        </span>
                         <br>
                         <br>
                         <hr>
@@ -137,7 +160,7 @@
             </tbody>
         </table>
     
-        <h1 class="py-4 text-xl tracking-widest">Nombre total d'UC pour l'enseignant : {{ totalUC }} / {{ nbUC }}</h1>
+        <h1 class="py-4">Nombre total d'UC pour l'enseignant : {{ totalUC }} / {{ nbUC }}</h1>
     </div>
 
     <div *ngIf="waiting" style="font-size: 34 px; padding: 35vh 0">
